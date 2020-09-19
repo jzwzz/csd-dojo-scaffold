@@ -5,7 +5,12 @@ node {
       gradleHome = tool 'gradle'
    }
 
-    stage('build') {
+   stage('Test') {
+      withEnv(["GRADLE_HOME=$gradleHome"]) {
+        sh '"$GRADLE_HOME/bin/gradle" clean test'
+      }
+   }
+     stage('Build') {
       withEnv(["GRADLE_HOME=$gradleHome"]) {
         sh '"$GRADLE_HOME/bin/gradle" clean build'
       }
